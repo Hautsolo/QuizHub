@@ -1,27 +1,115 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import {
-  Navbar, Container, Nav,
+  Navbar, Container, Nav, Button, Badge,
 } from 'react-bootstrap';
+import {
+  FaBell, FaUser, FaGamepad, FaTrophy, FaSignOutAlt,
+} from 'react-icons/fa';
+import { useAuth } from '../hooks/useAuth';
 
 export default function NavBar() {
+  const { user, logout, isAuthenticated } = useAuth();
+  const router = useRouter();
+  const [notifications] = useState([]);
+
+  useEffect(() => {
+    // Fetch notifications if user is authenticated
+    if (isAuthenticated) {
+      // This will be implemented with your API
+      // fetchNotifications();
+    }
+  }, [isAuthenticated]);
+
+  const handleLogout = () => {
+    logout();
+    router.push('/');
+  };
+
   return (
-    <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+    <Navbar expand="lg" className="glass-navbar" fixed="top">
       <Container>
-        <Link passHref href="/">
-          <Navbar.Brand>CHANGE ME</Navbar.Brand>
+        <Link href="/" passHref>
+          <Navbar.Brand className="d-flex align-items-center">
+            <FaGamepad className="me-2 text-primary" size={30} />
+            <span className="gradient-text fs-3 fw-bold">QuizHub</span>
+          </Navbar.Brand>
         </Link>
+
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
-            {/* CLOSE NAVBAR ON LINK SELECTION: https://stackoverflow.com/questions/72813635/collapse-on-select-react-bootstrap-navbar-with-nextjs-not-working */}
-            <Link passHref href="/">
-              <Nav.Link>Home</Nav.Link>
+            <Link href="/" passHref>
+              <Nav.Link className="fw-semibold">Home</Nav.Link>
             </Link>
-            <Link passHref href="/delete-me">
-              <Nav.Link>Delete Me</Nav.Link>
-            </Link>
+            {isAuthenticated && (
+              <>
+                <Link href="/dashboard" passHref>
+                  <Nav.Link className="fw-semibold">Dashboard</Nav.Link>
+                </Link>
+                <Link href="/quizzes" passHref>
+                  <Nav.Link className="fw-semibold">Quizzes</Nav.Link>
+                </Link>
+                <Link href="/matches" passHref>
+                  <Nav.Link className="fw-semibold">Matches</Nav.Link>
+                </Link>
+                <Link href="/leaderboard" passHref>
+                  <Nav.Link className="fw-semibold">
+                    <FaTrophy className="me-1" />
+                    Leaderboard
+                  </Nav.Link>
+                </Link>
+              </>
+            )}
+          </Nav>
+
+          <Nav className="d-flex align-items-center">
+            {isAuthenticated ? (
+              <>
+                <Nav.Link className="position-relative me-3">
+                  <FaBell size={20} />
+                  {notifications.length > 0 && (
+                    <Badge
+                      bg="danger"
+                      pill
+                      className="position-absolute top-0 start-100 translate-middle"
+                    >
+                      {notifications.length}
+                    </Badge>
+                  )}
+                </Nav.Link>
+
+                <div className="d-flex align-items-center me-3">
+                  <FaUser className="me-2" />
+                  <span className="fw-semibold">{user?.username}</span>
+                  <Badge bg="primary" className="ms-2">{user?.points || 0}</Badge>
+                </div>
+
+                <Button
+                  variant="outline-danger"
+                  size="sm"
+                  onClick={handleLogout}
+                  className="d-flex align-items-center"
+                >
+                  <FaSignOutAlt className="me-1" />
+                  Logout
+                </Button>
+              </>
+            ) : (
+              <>
+                <Link href="/login" passHref>
+                  <Button variant="outline-primary" className="me-2">
+                    Login
+                  </Button>
+                </Link>
+                <Link href="/register" passHref>
+                  <Button className="btn-gradient">
+                    Sign Up
+                  </Button>
+                </Link>
+              </>
+            )}
           </Nav>
         </Navbar.Collapse>
       </Container>

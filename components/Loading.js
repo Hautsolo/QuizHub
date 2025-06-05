@@ -1,19 +1,23 @@
 import React from 'react';
-import {
-  Spinner,
-} from 'react-bootstrap';
+import PropTypes from 'prop-types';
+import { Container } from 'react-bootstrap';
 
-export default function Loading() {
+export default function Loading({ message }) {
   return (
-    <div className="text-center mt-5">
-      <Spinner
-        animation="border"
-        style={{
-          color: '#00BF67',
-          width: '100px',
-          height: '100px',
-        }}
-      />
-    </div>
+    <Container className="text-center py-5">
+      <div className="glass-card p-5 d-inline-block">
+        <div className="loading-spinner mb-3" />
+        <h4 className="text-white mb-0">{message}</h4>
+        <p className="text-white-50 mb-0">Please wait while we prepare everything for you</p>
+      </div>
+    </Container>
   );
 }
+
+Loading.propTypes = {
+  message: PropTypes.string,
+};
+
+Loading.defaultProps = {
+  message: 'Loading awesome content...',
+};
