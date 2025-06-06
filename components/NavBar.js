@@ -30,7 +30,7 @@ export default function NavBar() {
   return (
     <Navbar expand="lg" className="glass-navbar" fixed="top">
       <Container>
-        <Link href="/" passHref>
+        <Link href="/" passHref legacyBehavior>
           <Navbar.Brand className="d-flex align-items-center">
             <FaGamepad className="me-2 text-primary" size={30} />
             <span className="gradient-text fs-3 fw-bold">QuizHub</span>
@@ -40,21 +40,21 @@ export default function NavBar() {
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
-            <Link href="/" passHref>
+            <Link href="/" passHref legacyBehavior>
               <Nav.Link className="fw-semibold">Home</Nav.Link>
             </Link>
             {isAuthenticated && (
               <>
-                <Link href="/dashboard" passHref>
+                <Link href="/dashboard" passHref legacyBehavior>
                   <Nav.Link className="fw-semibold">Dashboard</Nav.Link>
                 </Link>
-                <Link href="/quizzes" passHref>
+                <Link href="/quizzes" passHref legacyBehavior>
                   <Nav.Link className="fw-semibold">Quizzes</Nav.Link>
                 </Link>
-                <Link href="/matches" passHref>
+                <Link href="/matches" passHref legacyBehavior>
                   <Nav.Link className="fw-semibold">Matches</Nav.Link>
                 </Link>
-                <Link href="/leaderboard" passHref>
+                <Link href="/leaderboard" passHref legacyBehavior>
                   <Nav.Link className="fw-semibold">
                     <FaTrophy className="me-1" />
                     Leaderboard
@@ -98,12 +98,12 @@ export default function NavBar() {
               </>
             ) : (
               <>
-                <Link href="/login" passHref>
+                <Link href="/login" passHref legacyBehavior>
                   <Button variant="outline-primary" className="me-2">
                     Login
                   </Button>
                 </Link>
-                <Link href="/register" passHref>
+                <Link href="/register" passHref legacyBehavior>
                   <Button className="btn-gradient">
                     Sign Up
                   </Button>
