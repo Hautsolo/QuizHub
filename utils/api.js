@@ -23,7 +23,7 @@ api.interceptors.request.use((config) => {
   return config;
 });
 
-// Handle token refresh
+// Handle token refresh (WITHOUT auto-redirect)
 api.interceptors.response.use(
   (response) => response,
   async (error) => {
@@ -39,14 +39,15 @@ api.interceptors.response.use(
           newConfig.headers.Authorization = `Bearer ${response.data.access}`;
           return api.request(newConfig);
         } catch (refreshError) {
+          // Clear tokens but DON'T redirect - let components handle it
           localStorage.removeItem('access_token');
           localStorage.removeItem('refresh_token');
           localStorage.removeItem('user');
-          window.location.href = '/login';
+          localStorage.removeItem('guest_user');
+          // REMOVED: window.location.href = '/login';
         }
-      } else {
-        window.location.href = '/login';
       }
+      // REMOVED: else { window.location.href = '/login'; }
     }
     return Promise.reject(error);
   },
