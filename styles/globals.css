@@ -266,3 +266,376 @@ a {
 ::-webkit-scrollbar-thumb:hover {
   background: var(--primary-dark);
 }
+
+.question-card {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  background: rgba(255, 255, 255, 0.98) !important;
+  backdrop-filter: blur(20px);
+  border-radius: 24px !important;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+.question-card .card-header {
+  background: linear-gradient(45deg, #6366f1, #8b5cf6) !important;
+  border-radius: 24px 24px 0 0 !important;
+  border: none !important;
+}
+
+/* Answer Cards */
+.answer-card {
+  transition: all 0.3s ease;
+  border-radius: 16px !important;
+}
+
+.answer-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.answer-card.border-primary {
+  border-color: #6366f1 !important;
+  background: rgba(99, 102, 241, 0.1) !important;
+}
+
+/* Audio Player Styles */
+.audio-player-custom {
+  border-radius: 20px;
+  background: linear-gradient(45deg, #667eea, #764ba2);
+}
+
+.small-audio {
+  height: 30px;
+  width: 120px;
+}
+
+/* Video Container */
+.video-container video {
+  border-radius: 16px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* Mode Cards (Home page) */
+.mode-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2) !important;
+}
+
+/* Category Cards Enhanced */
+.category-card:hover {
+  transform: translateY(-8px) scale(1.05);
+  background: rgba(255, 255, 255, 0.2) !important;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+}
+
+/* Quiz Cards Enhanced */
+.quiz-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15) !important;
+}
+
+/* Progress Bars */
+.progress {
+  border-radius: 10px !important;
+  overflow: hidden;
+}
+
+.progress-bar {
+  background: linear-gradient(45deg, #6366f1, #8b5cf6) !important;
+  transition: width 0.3s ease;
+}
+
+/* Leaderboard Styles */
+.leaderboard-entry:hover {
+  background: rgba(99, 102, 241, 0.1) !important;
+}
+
+/* Stat Boxes */
+.stat-item {
+  padding: 1rem;
+  text-align: center;
+}
+
+.stat-box {
+  padding: 1rem;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  margin-bottom: 1rem;
+}
+
+/* Media Upload Styles */
+.media-upload-area {
+  border: 2px dashed #6366f1;
+  border-radius: 16px;
+  padding: 2rem;
+  text-align: center;
+  background: rgba(99, 102, 241, 0.05);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.media-upload-area:hover {
+  border-color: #8b5cf6;
+  background: rgba(99, 102, 241, 0.1);
+}
+
+.media-upload-area.drag-over {
+  border-color: #10b981;
+  background: rgba(16, 185, 129, 0.1);
+}
+
+/* Media Preview */
+.media-preview {
+  border-radius: 12px;
+  overflow: hidden;
+  max-width: 100%;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.media-preview img,
+.media-preview video {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+}
+
+.media-preview audio {
+  width: 100%;
+  height: 40px;
+}
+
+/* Enhanced Button Styles */
+.btn-multimedia {
+  background: linear-gradient(45deg, #6366f1, #8b5cf6);
+  border: none;
+  color: white;
+  border-radius: 12px;
+  padding: 0.75rem 1.5rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+}
+
+.btn-multimedia:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(99, 102, 241, 0.4);
+  color: white;
+}
+
+/* Solo Quiz Specific Styles */
+.solo-quiz-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.quiz-progress-header {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Time Warning Animation */
+.time-warning {
+  animation: pulse-red 1s infinite;
+}
+
+@keyframes pulse-red {
+  0% { color: #ef4444; }
+  50% { color: #dc2626; }
+  100% { color: #ef4444; }
+}
+
+/* Results Modal Styles */
+.results-modal .modal-content {
+  border-radius: 24px !important;
+  border: none !important;
+  background: linear-gradient(45deg, #667eea, #764ba2);
+  color: white;
+}
+
+.results-modal .stat-box {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 1.5rem;
+  text-align: center;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Leaderboard Enhancements */
+.leaderboard-table {
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.leaderboard-table thead th {
+  background: linear-gradient(45deg, #6366f1, #8b5cf6);
+  color: white;
+  font-weight: 600;
+  border: none;
+  padding: 1rem;
+}
+
+.leaderboard-table tbody tr {
+  transition: all 0.2s ease;
+}
+
+.leaderboard-table tbody tr:hover {
+  background: rgba(99, 102, 241, 0.05);
+  transform: scale(1.01);
+}
+
+/* Rank Icons */
+.rank-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  margin: 0 auto;
+}
+
+.rank-1 {
+  background: linear-gradient(45deg, #fbbf24, #f59e0b);
+  color: white;
+}
+
+.rank-2 {
+  background: linear-gradient(45deg, #9ca3af, #6b7280);
+  color: white;
+}
+
+.rank-3 {
+  background: linear-gradient(45deg, #d97706, #b45309);
+  color: white;
+}
+
+/* Mobile Responsive Enhancements */
+@media (max-width: 768px) {
+  .question-card {
+    margin: 0.5rem;
+    border-radius: 16px !important;
+  }
+  
+  .answer-card {
+    margin-bottom: 0.75rem !important;
+  }
+  
+  .mode-card {
+    margin-bottom: 1rem;
+  }
+  
+  .audio-player-custom {
+    padding: 2rem !important;
+  }
+  
+  .video-container video {
+    max-height: 200px;
+  }
+  
+  .stat-item {
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  .category-card {
+    margin-bottom: 0.75rem;
+  }
+}
+
+/* Loading States */
+.loading-media {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: loading-shimmer 1.5s infinite;
+  border-radius: 8px;
+}
+
+@keyframes loading-shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* Success/Error States */
+.upload-success {
+  border-color: #10b981 !important;
+  background: rgba(16, 185, 129, 0.1) !important;
+}
+
+.upload-error {
+  border-color: #ef4444 !important;
+  background: rgba(239, 68, 68, 0.1) !important;
+}
+
+/* Enhanced Glass Effect */
+.glass-card-enhanced {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+/* Floating Action Buttons */
+.fab {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: linear-gradient(45deg, #6366f1, #8b5cf6);
+  border: none;
+  color: white;
+  font-size: 1.5rem;
+  box-shadow: 0 8px 25px rgba(99, 102, 241, 0.4);
+  transition: all 0.3s ease;
+  z-index: 1000;
+}
+
+.fab:hover {
+  transform: scale(1.1);
+  box-shadow: 0 12px 35px rgba(99, 102, 241, 0.5);
+}
+
+/* Scroll Animations */
+.fade-in-up {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Custom Scrollbar for Multimedia Content */
+.multimedia-content::-webkit-scrollbar {
+  width: 8px;
+}
+
+.multimedia-content::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+}
+
+.multimedia-content::-webkit-scrollbar-thumb {
+  background: linear-gradient(45deg, #6366f1, #8b5cf6);
+  border-radius: 10px;
+}
+
+.multimedia-content::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(45deg, #4f46e5, #7c3aed);
+}

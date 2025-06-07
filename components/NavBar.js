@@ -1,3 +1,4 @@
+// components/NavBar.js - Updated with My Quizzes link
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
@@ -5,7 +6,7 @@ import {
   Navbar, Container, Nav, Button, Badge,
 } from 'react-bootstrap';
 import {
-  FaBell, FaUser, FaGamepad, FaTrophy, FaSignOutAlt,
+  FaBell, FaUser, FaGamepad, FaTrophy, FaSignOutAlt, FaEdit,
 } from 'react-icons/fa';
 import { useAuth } from '../hooks/useAuth';
 
@@ -49,10 +50,16 @@ export default function NavBar() {
                   <Nav.Link className="fw-semibold">Dashboard</Nav.Link>
                 </Link>
                 <Link href="/quizzes" passHref legacyBehavior>
-                  <Nav.Link className="fw-semibold">Quizzes</Nav.Link>
+                  <Nav.Link className="fw-semibold">Browse Quizzes</Nav.Link>
+                </Link>
+                <Link href="/my-quizzes" passHref legacyBehavior>
+                  <Nav.Link className="fw-semibold">
+                    <FaEdit className="me-1" />
+                    My Quizzes
+                  </Nav.Link>
                 </Link>
                 <Link href="/matches" passHref legacyBehavior>
-                  <Nav.Link className="fw-semibold">Matches</Nav.Link>
+                  <Nav.Link className="fw-semibold">Live Matches</Nav.Link>
                 </Link>
                 <Link href="/leaderboard" passHref legacyBehavior>
                   <Nav.Link className="fw-semibold">
