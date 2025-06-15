@@ -1,37 +1,22 @@
-// // pages/create-quiz.js - Complete Quiz Creation Page
+// // pages/create-quiz.js - Complete Quiz Creation Page with ESLint fixes
 // import React, { useState, useEffect } from 'react';
 // import { useRouter } from 'next/router';
 // import {
 //   Container, Row, Col, Card, Button, Form, Alert, Badge, Modal,
-//   Accordion, InputGroup, ProgressBar, Tabs, Tab,
+//   Accordion, ProgressBar, Tabs, Tab,
 // } from 'react-bootstrap';
 // import {
 //   FaPlus, FaTrash, FaEdit, FaSave, FaEye, FaUpload, FaImage,
-//   FaVolumeUp, FaVideo, FaGripVertical, FaCheck, FaTimes, FaQuestion,
-//   FaClock, FaUsers, FaGlobe, FaLock, FaArrowUp, FaArrowDown,
+//   FaVolumeUp, FaVideo, FaCheck, FaTimes, FaQuestion,
+//   FaClock, FaGlobe, FaLock, FaArrowUp, FaArrowDown,
 // } from 'react-icons/fa';
+// import Image from 'next/image';
 // import { useAuth } from '../hooks/useAuth';
 // import { quizAPI } from '../utils/api';
 // import Loading from '../components/Loading';
 
-// const handleQuizIconUpload = (event) => {
-//   const file = event.target.files[0];
-//   if (file) {
-//     // Validate file size (max 5MB) and type
-//     if (file.size > 5 * 1024 * 1024) {
-//       alert('Quiz icon must be smaller than 5MB');
-//       return;
-//     }
-//     if (!file.type.startsWith('image/')) {
-//       alert('Please select an image file');
-//       return;
-//     }
-//     setQuizData((prev) => ({ ...prev, quiz_icon: file }));
-//   }
-// };
-
 // export default function CreateQuizPage() {
-//   const { user, isAuthenticated } = useAuth();
+//   const { isAuthenticated } = useAuth();
 //   const router = useRouter();
 
 //   // Quiz metadata state
@@ -42,7 +27,7 @@
 //     max_questions: 10,
 //     is_public: true,
 //     difficulty: 3,
-//     quiz_icon: null, // NEW: Quiz icon/image
+//     quiz_icon: null,
 //   });
 
 //   // Questions state
@@ -52,7 +37,7 @@
 //   const [showPreviewModal, setShowPreviewModal] = useState(false);
 
 //   // Form state
-//   const [loading, setLoading] = useState(false);
+//   const [loading] = useState(false);
 //   const [saving, setSaving] = useState(false);
 //   const [errors, setErrors] = useState({});
 //   const [activeTab, setActiveTab] = useState('metadata');
@@ -88,6 +73,22 @@
 //       router.push('/login');
 //     }
 //   }, [isAuthenticated, router]);
+
+//   const handleQuizIconUpload = (event) => {
+//     const file = event.target.files[0];
+//     if (file) {
+//       // Validate file size (max 5MB) and type
+//       if (file.size > 5 * 1024 * 1024) {
+//         alert('Quiz icon must be smaller than 5MB');
+//         return;
+//       }
+//       if (!file.type.startsWith('image/')) {
+//         alert('Please select an image file');
+//         return;
+//       }
+//       setQuizData((prev) => ({ ...prev, quiz_icon: file }));
+//     }
+//   };
 
 //   const validateQuizData = () => {
 //     const newErrors = {};
@@ -252,7 +253,7 @@
 //         ...quizData,
 //         questions,
 //         is_public: !isDraft && quizData.is_public,
-//         time_limit: quizData.time_limit ? parseInt(quizData.time_limit, 10) : null, // Keep in seconds
+//         time_limit: quizData.time_limit ? parseInt(quizData.time_limit, 10) : null,
 //       };
 
 //       const response = await quizAPI.createQuiz(quizPayload);
@@ -321,11 +322,11 @@
 //         <Card className="glass-card border-0 mb-4">
 //           <Card.Body className="p-3">
 //             <div className="d-flex align-items-center justify-content-between text-white">
-//               <span>Progress: {Math.round(((quizData.title ? 1 : 0) + (questions.length > 0 ? 1 : 0)) / 2 * 100)}%</span>
+//               <span>Progress: {Math.round((((quizData.title ? 1 : 0) + (questions.length > 0 ? 1 : 0)) / 2) * 100)}%</span>
 //               <Badge bg="info">{questions.length} Questions Added</Badge>
 //             </div>
 //             <ProgressBar
-//               now={((quizData.title ? 1 : 0) + (questions.length > 0 ? 1 : 0)) / 2 * 100}
+//               now={(((quizData.title ? 1 : 0) + (questions.length > 0 ? 1 : 0)) / 2) * 100}
 //               className="mt-2"
 //             />
 //           </Card.Body>
@@ -358,12 +359,15 @@
 //                     <div className="text-center mb-4">
 //                       <div className="position-relative d-inline-block">
 //                         {quizData.quiz_icon ? (
-//                           <img
-//                             src={URL.createObjectURL(quizData.quiz_icon)}
-//                             alt="Quiz Icon"
-//                             className="rounded-3 border"
-//                             style={{ width: '120px', height: '120px', objectFit: 'cover' }}
-//                           />
+//                           <div style={{ width: '120px', height: '120px', position: 'relative' }}>
+//                             <Image
+//                               src={URL.createObjectURL(quizData.quiz_icon)}
+//                               alt="Quiz Icon"
+//                               fill
+//                               style={{ objectFit: 'cover' }}
+//                               className="rounded-3 border"
+//                             />
+//                           </div>
 //                         ) : (
 //                           <div
 //                             className="d-flex align-items-center justify-content-center rounded-3 border border-dashed"
@@ -503,12 +507,12 @@
 //                   <Card.Body className="p-0">
 //                     {questions.length > 0 ? (
 //                       <div className="list-group list-group-flush">
-//                         {questions.map((question, index) => (
-//                           <div key={index} className="list-group-item p-4">
+//                         {questions.map((question, questionIndex) => (
+//                           <div key={`question-${questionIndex}`} className="list-group-item p-4">
 //                             <div className="d-flex justify-content-between align-items-start">
 //                               <div className="flex-grow-1">
 //                                 <div className="d-flex align-items-center gap-3 mb-2">
-//                                   <Badge bg="primary">Q{index + 1}</Badge>
+//                                   <Badge bg="primary">Q{questionIndex + 1}</Badge>
 //                                   <Badge
 //                                     style={{ backgroundColor: getDifficultyColor(question.difficulty) }}
 //                                   >
@@ -526,37 +530,37 @@
 //                                 <h6 className="mb-2">{question.text || 'Media Question'}</h6>
 //                                 <small className="text-muted">
 //                                   {question.answers.filter((a) => a.text.trim()).length} answers,
-//                                   {question.answers.filter((a) => a.is_correct).length} correct
+//                                   {' '}{question.answers.filter((a) => a.is_correct).length} correct
 //                                 </small>
 //                               </div>
 //                               <div className="d-flex gap-1">
 //                                 <Button
 //                                   size="sm"
 //                                   variant="outline-secondary"
-//                                   onClick={() => moveQuestion(index, 'up')}
-//                                   disabled={index === 0}
+//                                   onClick={() => moveQuestion(questionIndex, 'up')}
+//                                   disabled={questionIndex === 0}
 //                                 >
 //                                   <FaArrowUp size={12} />
 //                                 </Button>
 //                                 <Button
 //                                   size="sm"
 //                                   variant="outline-secondary"
-//                                   onClick={() => moveQuestion(index, 'down')}
-//                                   disabled={index === questions.length - 1}
+//                                   onClick={() => moveQuestion(questionIndex, 'down')}
+//                                   disabled={questionIndex === questions.length - 1}
 //                                 >
 //                                   <FaArrowDown size={12} />
 //                                 </Button>
 //                                 <Button
 //                                   size="sm"
 //                                   variant="outline-primary"
-//                                   onClick={() => openQuestionModal(question, index)}
+//                                   onClick={() => openQuestionModal(question, questionIndex)}
 //                                 >
 //                                   <FaEdit size={12} />
 //                                 </Button>
 //                                 <Button
 //                                   size="sm"
 //                                   variant="outline-danger"
-//                                   onClick={() => deleteQuestion(index)}
+//                                   onClick={() => deleteQuestion(questionIndex)}
 //                                 >
 //                                   <FaTrash size={12} />
 //                                 </Button>
@@ -748,14 +752,14 @@
 
 //               {/* Answer Options */}
 //               <Form.Label>Answer Options</Form.Label>
-//               {questionForm.answers.map((answer, index) => (
-//                 <div key={index} className="border rounded p-3 mb-3" style={{ borderColor: 'rgba(255,255,255,0.3)' }}>
+//               {questionForm.answers.map((answer, answerIndex) => (
+//                 <div key={`answer-${answerIndex}`} className="border rounded p-3 mb-3" style={{ borderColor: 'rgba(255,255,255,0.3)' }}>
 //                   <div className="d-flex align-items-center gap-2 mb-2">
 //                     <Form.Check
 //                       type="checkbox"
 //                       checked={answer.is_correct}
-//                       onChange={(e) => handleAnswerChange(index, 'is_correct', e.target.checked)}
-//                       label={`Answer ${String.fromCharCode(65 + index)}`}
+//                       onChange={(e) => handleAnswerChange(answerIndex, 'is_correct', e.target.checked)}
+//                       label={`Answer ${String.fromCharCode(65 + answerIndex)}`}
 //                       className="text-white"
 //                     />
 //                     <Badge bg={answer.is_correct ? 'success' : 'secondary'}>
@@ -765,7 +769,7 @@
 //                       <Button
 //                         size="sm"
 //                         variant="outline-danger"
-//                         onClick={() => removeAnswer(index)}
+//                         onClick={() => removeAnswer(answerIndex)}
 //                         className="ms-auto"
 //                       >
 //                         <FaTimes size={12} />
@@ -775,8 +779,8 @@
 //                   <Form.Control
 //                     type="text"
 //                     value={answer.text}
-//                     onChange={(e) => handleAnswerChange(index, 'text', e.target.value)}
-//                     placeholder={`Enter answer option ${String.fromCharCode(65 + index)}`}
+//                     onChange={(e) => handleAnswerChange(answerIndex, 'text', e.target.value)}
+//                     placeholder={`Enter answer option ${String.fromCharCode(65 + answerIndex)}`}
 //                     className="bg-transparent text-white"
 //                     style={{ border: '1px solid rgba(255,255,255,0.3)' }}
 //                   />
@@ -842,7 +846,7 @@
 //             {questions.length > 0 ? (
 //               <Accordion>
 //                 {questions.map((question, index) => (
-//                   <Accordion.Item key={index} eventKey={index.toString()}>
+//                   <Accordion.Item key={`preview-${index}`} eventKey={index.toString()}>
 //                     <Accordion.Header>
 //                       <div className="d-flex align-items-center gap-2">
 //                         <Badge bg="primary">Q{index + 1}</Badge>
@@ -873,7 +877,7 @@
 //                         <strong>Answers:</strong>
 //                         <ul className="mt-2">
 //                           {question.answers.filter((a) => a.text.trim()).map((answer, aIndex) => (
-//                             <li key={aIndex} className={answer.is_correct ? 'text-success fw-bold' : 'text-muted'}>
+//                             <li key={`preview-answer-${aIndex}`} className={answer.is_correct ? 'text-success fw-bold' : 'text-muted'}>
 //                               <span className="me-2">{String.fromCharCode(65 + aIndex)}.</span>
 //                               {answer.text}
 //                               {answer.is_correct && (

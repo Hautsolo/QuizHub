@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 500" fill="none">
+  <!-- Simple world map dots pattern -->
+  <defs>
+    <pattern id="dots" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+      <circle cx="10" cy="10" r="2" fill="rgba(255,255,255,0.3)"/>
+    </pattern>
+  </defs>
+  
+  <!-- Continents simplified -->
+  <!-- North America -->
+  <path d="M 150 150 Q 200 100 250 120 L 280 140 L 260 180 L 200 200 Z" fill="url(#dots)" stroke="rgba(255,255,255,0.2)"/>
+  
+  <!-- South America -->
+  <path d="M 250 250 L 280 280 L 270 350 L 240 380 L 220 320 Z" fill="url(#dots)" stroke="rgba(255,255,255,0.2)"/>
+  
+  <!-- Europe -->
+  <path d="M 450 120 L 500 100 L 520 130 L 480 150 Z" fill="url(#dots)" stroke="rgba(255,255,255,0.2)"/>
+  
+  <!-- Africa -->
+  <path d="M 470 200 L 500 180 L 520 250 L 500 320 L 450 300 L 440 220 Z" fill="url(#dots)" stroke="rgba(255,255,255,0.2)"/>
+  
+  <!-- Asia -->
+  <path d="M 550 100 L 700 90 L 750 150 L 700 200 L 600 180 L 550 140 Z" fill="url(#dots)" stroke="rgba(255,255,255,0.2)"/>
+  
+  <!-- Australia -->
+  <path d="M 700 320 L 780 310 L 800 350 L 750 360 L 700 340 Z" fill="url(#dots)" stroke="rgba(255,255,255,0.2)"/>
+  
+  <!-- Connection lines -->
+  <line x1="250" y1="150" x2="450" y2="120" stroke="rgba(255,255,255,0.1)" stroke-width="1" stroke-dasharray="5,5"/>
+  <line x1="500" y1="130" x2="600" y2="140" stroke="rgba(255,255,255,0.1)" stroke-width="1" stroke-dasharray="5,5"/>
+  <line x1="500" y1="250" x2="700" y2="200" stroke="rgba(255,255,255,0.1)" stroke-width="1" stroke-dasharray="5,5"/>
+  <line x1="700" y1="200" x2="750" y2="330" stroke="rgba(255,255,255,0.1)" stroke-width="1" stroke-dasharray="5,5"/>
+</svg>
